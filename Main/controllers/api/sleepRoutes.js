@@ -9,11 +9,11 @@ router.post('/', async (req, res) => {
   try {
     // creates a new sleep cycle
     const newSleepCycle = await SleepCycle.create({
-      hours_of_sleep: req.body.hours_of_sleep,
+      hours_of_sleep: parseInt(req.body.hours_of_sleep),
       user_id: req.session.user_id,
       
     });
-
+    console.log(newSleepCycle);
     res.status(200).json(newSleepCycle);
   } catch (err) {
     res.status(400).json(err);
