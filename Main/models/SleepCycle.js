@@ -1,32 +1,29 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Project extends Model {}
+class SleepCycle extends Model {}
 
-Project.init(
+SleepCycle.init(
   {
+    // primary key
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
-      type: DataTypes.STRING,
+    // hours of sleep user inputted implicit gives sleep condition
+    hours_of_sleep: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
-    description: {
-      type: DataTypes.STRING,
-    },
+    // when user inputted sleep
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    needed_funding: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
+    // user fk, foreign key
     user_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -40,8 +37,8 @@ Project.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'project',
+    modelName: 'sleepcycle',
   }
 );
 
-module.exports = Project;
+module.exports = SleepCycle;

@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { Project, User } = require('../models');
+const { SleepCycle, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
     // Get all projects and JOIN with user data
-    const projectData = await Project.findAll({
+    const projectData = await SleepCycle.findAll({
       include: [
         {
           model: User,
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/project/:id', async (req, res) => {
+router.get('/sleep/:id', async (req, res) => {
   try {
     const projectData = await Project.findByPk(req.params.id, {
       include: [
@@ -40,7 +40,7 @@ router.get('/project/:id', async (req, res) => {
 
     const project = projectData.get({ plain: true });
 
-    res.render('project', {
+    res.render('sleep', {
       ...project,
       logged_in: req.session.logged_in
     });
