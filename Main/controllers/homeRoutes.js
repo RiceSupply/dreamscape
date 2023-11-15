@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 
 router.get('/sleep/:id', async (req, res) => {
   try {
-    const projectData = await Project.findByPk(req.params.id, {
+    const sleepCycleData = await sleepCycle.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -38,10 +38,10 @@ router.get('/sleep/:id', async (req, res) => {
       ],
     });
 
-    const project = projectData.get({ plain: true });
+    const sleepCycle = sleepCycleData.get({ plain: true });
 
     res.render('sleep', {
-      ...project,
+      ...sleepCycle,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -55,16 +55,18 @@ router.get('/profile', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Project }],
+      include: [{ model: SleepCycle }],
     });
 
     const user = userData.get({ plain: true });
+    console.log(user);
 
     res.render('profile', {
       ...user,
       logged_in: true
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
