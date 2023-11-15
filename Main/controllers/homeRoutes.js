@@ -5,7 +5,7 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     // Get all projects and JOIN with user data
-    const projectData = await SleepCycle.findAll({
+    const sleepCycleData = await SleepCycle.findAll({
       include: [
         {
           model: User,
@@ -15,11 +15,11 @@ router.get('/', async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const projects = projectData.map((project) => project.get({ plain: true }));
+    const sleepCycles = sleepCycleData.map((sleepCycle) => sleepCycle.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
-      projects, 
+      sleepCycles, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 
 router.get('/sleep/:id', async (req, res) => {
   try {
-    const projectData = await Project.findByPk(req.params.id, {
+    const sleepCycleData = await SleepCycle.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -37,11 +37,10 @@ router.get('/sleep/:id', async (req, res) => {
         },
       ],
     });
+    const sleepCycle = sleepCycleData.get({ plain: true });
 
-    const project = projectData.get({ plain: true });
-
-    res.render('sleep', {
-      ...project,
+    res.render('project', {
+      ...sleepCycle,
       logged_in: req.session.logged_in
     });
   } catch (err) {
