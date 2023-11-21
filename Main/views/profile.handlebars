@@ -8,18 +8,18 @@
   <div class="col-md-6">
     <h3>Submit a new Journal:</h3>
 
-    <form class="form new-project-form">
+    <form class="form new-journal-form">
       <div class="form-group">
-        <label for="project-name">Journal name:</label>
-        <input class="form-input" type="text" id="project-name" name="project-name" />
+        <label for="journal-name">Journal name:</label>
+        <input class="form-input" type="text" id="journal-name" name="journal-name" />
       </div>
       <div class="form-group">
-        <label for="project-funding">Hours of Sleep:</label>
-        <input class="form-input" type="number" id="project-funding" name="project-funding" />
+        <label for="sleep-hours">Hours of Sleep:</label>
+        <input class="form-input" type="number" id="sleep-hours" name="sleep-hours" />
       </div>
       <div class="form-group">
-        <label for="project-desc">Description:</label>
-        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
+        <label for="sleep-journal">Description:</label>
+        <textarea class="form-input" id="sleep-journal" name="sleep-journal"></textarea>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Create</button>
@@ -28,7 +28,7 @@
   </div>
 
   {{#if sleepCycle.length}}
-  <div class="col-md-6 project-list">
+  <div class="col-md-6 journal-list">
     <h3>Past Journals:</h3>
 
     {{#each sleepCycles as |sleepCycle|}}
