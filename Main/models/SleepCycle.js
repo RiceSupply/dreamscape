@@ -17,6 +17,10 @@ SleepCycle.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     // when user inputted sleep
     date_created: {
       type: DataTypes.DATE,

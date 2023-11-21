@@ -5,7 +5,7 @@ const newFormHandler = async (event) => {
   const hours = document.querySelector('#sleep-hours').value.trim();
   const description = document.querySelector('#sleep-journal').value.trim();
 
-  if (name && needed_funding && description) {
+  if (name && hours && description) {
     const response = await fetch(`/api/sleep`, {
       method: 'POST',
       body: JSON.stringify({ name, hours, description }),

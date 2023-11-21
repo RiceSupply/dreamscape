@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 
 router.get('/sleep/:id', async (req, res) => {
   try {
-    const sleepCycleData = await sleepCycle.findByPk(req.params.id, {
+    const sleepCycleData = await SleepCycle.findByPk(req.params.id, {
       include: [
         {
           model: User,
