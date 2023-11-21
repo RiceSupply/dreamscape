@@ -23,6 +23,7 @@ router.get('/', async (req, res) => {
       logged_in: req.session.logged_in 
     });
   } catch (err) {
+    console.log(error);
     res.status(500).json(err);
   }
 });
@@ -44,7 +45,9 @@ router.get('/sleep/:id', async (req, res) => {
       ...sleepCycle,
       logged_in: req.session.logged_in
     });
+    console.log(sleepCycleData);
   } catch (err) {
+    console.log(error);
     res.status(500).json(err);
   }
 });
